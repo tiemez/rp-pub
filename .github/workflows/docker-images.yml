@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build the Docker image for rp-php-cli
+    - name: Build the Docker image for rp
       run: >
-        docker build . --target rp-php-cli --file Dockerfile --tag rp-php-cli:latest &&
-        docker build . --target rp-php-fpm --file Dockerfile --tag rp-php-fpm:latest &&
-        docker build . --target rp-php-deployer --file Dockerfile --tag rp-php-deployer
+      docker build --target rp-php-cli --file Dockerfile --tag rp-php-cli:latest &&
+      docker build --target rp-php-fpm --file Dockerfile --tag rp-php-fpm:latest &&
+      docker build --target rp-php-deployer --file Dockerfile --tag rp-php-deployer:latest
       
