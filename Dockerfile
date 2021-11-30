@@ -1,7 +1,7 @@
 ARG PHP_VERSION=7.4
 FROM php:${PHP_VERSION}-fpm-alpine AS rp-php-fpm
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
-COPY --from=rp-php-cli /usr/local/bin/php /usr/local/bin/php
+COPY --from=ghcr.io/tiemez/rp-pub/rp-php-cli /usr/local/bin/php /usr/local/bin/php
 RUN chmod +x /usr/local/bin/install-php-extensions && install-php-extensions xdebug ssh2 zip apcu tidy pdo_mysql intl soap gd enchant imap calendar pcntl @composer-1 sqlsrv pdo_sqlsrv
 RUN apk add --no-cache hunspell git graphviz tidyhtml
 COPY php/php.ini /usr/local/etc/php.ini
