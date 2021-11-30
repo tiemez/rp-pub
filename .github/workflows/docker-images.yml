@@ -9,31 +9,27 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-     - 
-      name: Login to GitHub Container Registry
-      uses: docker/login-action@v1 
-      with:
-        registry: ghcr.io
-        username: ${{ github.repository_owner }}
-        password: ${{ secrets.GH_PAT }}
-       -
-        name: Login to GitHub Container Registry
-        uses: docker/login-action@v1 
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      -
-        name: Build and push rp-php-cli
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: true
-          target: rp-php-cli
-          tags: |
-            ghcr.io/${{ github.repository_owner }}/rp-php-cli:latest
-     -
-        name: Build and push rp-php-fpm
+          password: ${{ secrets.GH_PAT }}
+            - name: Login to GitHub Container Registry
+              uses: docker/login-action@v1
+              with:
+                registry: ghcr.io
+                username: ${{ github.repository_owner }}
+                password: ${{ secrets.GITHUB_TOKEN }}
+            - name: Build and push rp-php-cli
+              uses: docker/build-push-action@v2
+              with:
+                context: .
+                push: true
+                target: rp-php-cli
+                tags: |
+                  ghcr.io/${{ github.repository_owner }}/rp-php-cli:latest
+      - name: Build and push rp-php-fpm
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -41,8 +37,7 @@ jobs:
           target: rp-php-fpm
           tags: |
             ghcr.io/${{ github.repository_owner }}/rp-php-fpm:latest
-      -
-        name: Build and push rp-php-deployer
+      - name: Build and push rp-php-deployer
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -50,4 +45,3 @@ jobs:
           target: rp-php-deployer
           tags: |
             ghcr.io/${{ github.repository_owner }}/rp-php-deployer:latest
-      
