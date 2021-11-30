@@ -10,8 +10,6 @@ COPY php/www.conf /usr/local/etc/php-fpm.d/www.conf
 COPY php/docker-healthcheck.sh /usr/local/bin/docker-healthcheck
 RUN chmod +x /usr/local/bin/docker-healthcheck
 HEALTHCHECK --interval=10s --timeout=3s --retries=3 CMD ["docker-healthcheck"]
-RUN id -u www-data &>/dev/null || useradd www-data -S www-data -u 1000
-USER www-data
 
 FROM php:${PHP_VERSION}-cli-alpine AS rp-php-cli
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
@@ -19,8 +17,6 @@ RUN chmod +x /usr/local/bin/install-php-extensions && install-php-extensions xde
 RUN apk add --no-cache hunspell git graphviz tidyhtml
 COPY php/php.ini /usr/local/etc/php.ini
 COPY php/xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-RUN id -u www-data &>/dev/null || useradd www-data -S www-data -u 1000
-USER www-data
 
 FROM rp-php-cli AS rp-php-deployer
 RUN apk add --no-cache openssh-client curl
