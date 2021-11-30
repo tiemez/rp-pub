@@ -12,7 +12,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image for rp-php-cli
       run: >
-        docker build . --target rp-php-cli --file Dockerfile --tag rp-php-cli:latest
-        docker build . --target rp-php-fpm --file Dockerfile --tag rp-php-fpm:latest
+        docker build . --target rp-php-cli --file Dockerfile --tag rp-php-cli:latest &&
+        docker build . --target rp-php-fpm --file Dockerfile --tag rp-php-fpm:latest &&
         docker build . --target rp-php-deployer --file Dockerfile --tag rp-php-deployer
       
