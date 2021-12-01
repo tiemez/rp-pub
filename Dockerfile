@@ -9,6 +9,7 @@ COPY php/xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 COPY php/www.conf /usr/local/etc/php-fpm.d/www.conf
 COPY php/docker-healthcheck.sh /usr/local/bin/docker-healthcheck
 RUN chmod +x /usr/local/bin/docker-healthcheck
+EXPOSE 9000
 HEALTHCHECK --interval=10s --timeout=3s --retries=3 CMD ["docker-healthcheck"]
 
 FROM php:${PHP_VERSION}-cli-alpine AS rp-php-cli

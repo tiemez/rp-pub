@@ -20,6 +20,7 @@ jobs:
         with:
           push: true
           target: rp-php-cli
+          platforms: linux/amd64,linux/arm64,darwin/amd64
           tags: |
             ghcr.io/${{ github.repository }}/rp-php-cli:latest
       - name: Build and push rp-php-fpm
@@ -27,6 +28,7 @@ jobs:
         with:
           push: true
           target: rp-php-fpm
+          platforms: linux/amd64,linux/arm64,darwin/amd64
           tags: |
             ghcr.io/${{ github.repository }}/rp-php-fpm:latest
       - name: Build and push rp-php-deployer
@@ -34,5 +36,6 @@ jobs:
         with:
           push: true
           target: rp-php-deployer
+          platforms: linux/amd64,linux/arm64,darwin/amd64
           tags: |
             ghcr.io/${{ github.repository }}/rp-php-deployer:latest
