@@ -21,18 +21,18 @@ jobs:
           push: true
           target: rp-php-cli
           tags: |
-            ghcr.io/${{ github.repository_owner }}/${{ github.repository }}/rp-php-cli:latest
+            ghcr.io/${{ github.repository }}/rp-php-cli:latest
       - name: Build and push rp-php-fpm
         uses: docker/build-push-action@v2
         with:
           push: true
           target: rp-php-fpm
           tags: |
-            ghcr.io/${{ github.repository_owner }}/${{ github.repository }}/rp-php-fpm:latest
+            ghcr.io/${{ github.repository }}/rp-php-fpm:latest
       - name: Build and push rp-php-deployer
         uses: docker/build-push-action@v2
         with:
           push: true
           target: rp-php-deployer
           tags: |
-            ghcr.io/${{ github.repository_owner }}/${{ github.repository }}/rp-php-deployer:latest
+            ghcr.io/${{ github.repository }}/rp-php-deployer:latest
