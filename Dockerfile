@@ -5,7 +5,6 @@ COPY --from=ghcr.io/tiemez/rp-pub/rp-php-cli /usr/local/bin/php /usr/local/bin/p
 RUN chmod +x /usr/local/bin/install-php-extensions && install-php-extensions xdebug ssh2 zip apcu tidy pdo_mysql intl soap gd enchant imap calendar pcntl @composer-1 sqlsrv pdo_sqlsrv
 RUN apk add --no-cache hunspell git graphviz tidyhtml
 COPY php/php.ini /usr/local/etc/php.ini
-COPY php/xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 COPY php/www.conf /usr/local/etc/php-fpm.d/www.conf
 COPY php/docker-healthcheck.sh /usr/local/bin/docker-healthcheck
 RUN chmod +x /usr/local/bin/docker-healthcheck
