@@ -4,7 +4,7 @@ COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr
 COPY --from=ghcr.io/tiemez/rp-pub/rp-php-cli /usr/local/bin/php /usr/local/bin/php
 RUN chmod +x /usr/local/bin/install-php-extensions && install-php-extensions xdebug ssh2 zip apcu tidy pdo_mysql intl soap gd enchant imap calendar pcntl @composer-1 sqlsrv pdo_sqlsrv
 RUN apk add --no-cache hunspell git graphviz tidyhtml
-COPY php/php.ini /usr/local/etc/php.ini
+COPY php/php.ini /usr/local/etc/php/php.ini
 COPY php/www.conf /usr/local/etc/php-fpm.d/www.conf
 COPY php/docker-healthcheck.sh /usr/local/bin/docker-healthcheck
 RUN chmod +x /usr/local/bin/docker-healthcheck
@@ -15,7 +15,6 @@ FROM php:${PHP_VERSION}-cli-alpine AS rp-php-cli
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions && install-php-extensions xdebug ssh2 zip apcu tidy pdo_mysql intl soap gd enchant imap calendar pcntl @composer-1 sqlsrv pdo_sqlsrv
 RUN apk add --no-cache hunspell git graphviz tidyhtml
-COPY php/php.ini /usr/local/etc/php.ini
 
 FROM rp-php-cli AS rp-php-deployer
 RUN apk add --no-cache openssh-client curl
