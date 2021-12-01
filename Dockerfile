@@ -22,3 +22,8 @@ COPY php/xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 FROM rp-php-cli AS rp-php-deployer
 RUN apk add --no-cache openssh-client curl
 RUN curl -LO https://deployer.org/deployer.phar -o /bin/deployer.phar
+
+FROM devture/exim-relay:4.95-r0 AS rp-exim-relay
+USER root
+RUN sed -i "s|begin rewrite|begin rewrite \\n*@*   \"\$header_from\"  F|g" /etc/exim/exim.conf
+USER exim
