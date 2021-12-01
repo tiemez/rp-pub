@@ -17,7 +17,6 @@ COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr
 RUN chmod +x /usr/local/bin/install-php-extensions && install-php-extensions xdebug ssh2 zip apcu tidy pdo_mysql intl soap gd enchant imap calendar pcntl @composer-1 sqlsrv pdo_sqlsrv
 RUN apk add --no-cache hunspell git graphviz tidyhtml
 COPY php/php.ini /usr/local/etc/php.ini
-COPY php/xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 FROM rp-php-cli AS rp-php-deployer
 RUN apk add --no-cache openssh-client curl
