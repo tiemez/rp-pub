@@ -100,5 +100,6 @@ jobs:
           platforms: linux/arm64, linux/amd64
           build-args: |
             WITH_XDEBUG=1
+            PHP_VERSION=8.1
           tags: |
             ghcr.io/${{ github.repository }}/rp-php-fpm:8.1
