@@ -5,7 +5,7 @@ ARG WITH_XDEBUG
 FROM php:${PHP_VERSION}-fpm-buster AS rp-php-builder
 ENV PHP_SENDMAIL_PATH="/usr/sbin/sendmail -t -i"
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
-RUN chmod +x /usr/local/bin/install-php-extensions && install-php-extensions xdebug ssh2 zip apcu tidy pdo_mysql intl soap gd enchant imap calendar pcntl @composer-1
+RUN chmod +x /usr/local/bin/install-php-extensions && install-php-extensions ssh2 zip http raphf propro apcu tidy pdo_mysql intl soap gd enchant imap calendar pcntl @composer-1
 RUN if [ -n "$WITH_SQL_SRV" ]; then install-php-extensions sqlsrv pdo_sqlsrv; fi;
 RUN if [ -n "$WITH_XDEBUG" ] ; then install-php-extensions xdebug; fi;
 RUN apt update && apt install -y hunspell-nl git gnupg2 graphviz tidy wget curl
